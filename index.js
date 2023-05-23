@@ -22,7 +22,6 @@ app.get('/api/:date', (req, res) => {
   const { date } = req.params
   const today = new Date(date)
   const time = today.getTime()
-  console.log(today)
   res.json({ unix: time, utc: today.toString() })
 })
 
