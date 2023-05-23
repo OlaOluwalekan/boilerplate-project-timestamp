@@ -26,13 +26,13 @@ app.get('/api', (req, res) => {
 })
 
 app.get('/api/:date', (req, res) => {
-  const { date } = req.params
+  const { date: date_string } = req.params
   let today
 
-  if (date.includes('-')) {
-    today = new Date(`${date}`)
+  if (date_string.includes('-')) {
+    today = new Date(`${date_string}`)
   } else {
-    today = new Date(Number(date))
+    today = new Date(Number(date_string))
   }
   // let strDate = today.toString()
   // strDate = strDate.slice(0, strDate.indexOf('+'))
