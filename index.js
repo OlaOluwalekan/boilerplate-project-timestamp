@@ -34,7 +34,7 @@ app.get('/api/:date', (req, res) => {
     today = new Date(Number(date))
   }
   let strDate = today.toString()
-  strDate = strDate.slice(0, strDate.indexOf('(') - 1)
+  strDate = strDate.slice(0, strDate.indexOf('+'))
   const time = today.getTime()
   res.json({ unix: time, utc: strDate })
 })
