@@ -18,9 +18,21 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/views/index.html')
 })
 
+app.get('/api', (req, res) => {
+  const today = new Date()
+  const time = today.getTime()
+  res.json({ unix: time, utc: today.toString() })
+})
+
 app.get('/api/:date', (req, res) => {
   const { date } = req.params
-  const today = new Date(date)
+  let today
+
+  if (date.includes('-')) {
+    today = new Date(date)
+  } else {
+    today = new Date(Number(date))
+  }
   const time = today.getTime()
   res.json({ unix: time, utc: today.toString() })
 })
