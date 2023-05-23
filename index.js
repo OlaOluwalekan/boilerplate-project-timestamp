@@ -30,7 +30,7 @@ app.get('/api/:date', (req, res) => {
   let today
 
   if (date_string.includes('-')) {
-    today = new Date(`${date_string}`)
+    today = new Date(date_string)
   } else {
     today = new Date(Number(date_string))
   }
