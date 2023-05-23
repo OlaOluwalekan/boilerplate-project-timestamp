@@ -26,7 +26,7 @@ app.get('/api', (req, res) => {
 })
 
 app.get('/api/:date', (req, res) => {
-  const { date: date_string } = req.params
+  const date_string = req.params.date
   let today
 
   if (date_string.includes('-')) {
