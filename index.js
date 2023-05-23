@@ -8,6 +8,7 @@ var app = express()
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC
 var cors = require('cors')
+const { daysArr, monthArr } = require('./data')
 app.use(cors({ optionsSuccessStatus: 200 })) // some legacy browsers choke on 204
 
 // http://expressjs.com/en/starter/static-files.html
@@ -29,14 +30,25 @@ app.get('/api/:date', (req, res) => {
   let today
 
   if (date.includes('-')) {
-    today = new Date(date)
+    today = new Date(`${date}`)
   } else {
     today = new Date(Number(date))
   }
-  let strDate = today.toString()
-  strDate = strDate.slice(0, strDate.indexOf('+'))
+  // let strDate = today.toString()
+  // strDate = strDate.slice(0, strDate.indexOf('+'))
+  const day = today.getDay()
+  const month = today.getMonth()
+  const dayNo = today.getDate()
+  const year = today.getFullYear()
+  const hr = today.getHours()
+  const min = today.getMinutes()
+  const sec = today.getSeconds()
+  const dateFomat = `${daysArr[day]}, ${dayNo} ${monthArr[month]} ${year} ${
+    hr < 10 ? `0${hr}` : hr
+  }:${min < 10 ? `0${min}` : min}:${sec < 10 ? `0${sec}` : sec} GMT`
+
   const time = today.getTime()
-  res.json({ unix: time, utc: strDate })
+  res.json({ unix: time, utc: dateFomat })
 })
 
 // your first API endpoint...
