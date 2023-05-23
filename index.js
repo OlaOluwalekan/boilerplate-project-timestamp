@@ -31,11 +31,18 @@ app.get('/api/:date', (req, res) => {
 
   if (date_string.includes('-')) {
     today = new Date(date_string)
+    if (today.toString() === 'Invalid Date') {
+      return res.json({ error: 'Invalid Date' })
+    }
   } else {
-    today = new Date(Number(date_string))
+    let typeNum = Number(date_string)
+    if (!typeNum) {
+      return res.json({ error: 'Invalid Date' })
+    }
+    today = new Date(typeNum)
   }
-  // let strDate = today.toString()
-  // strDate = strDate.slice(0, strDate.indexOf('+'))
+  let strDate = today.toString()
+  strDate = strDate.slice(0, strDate.indexOf('+'))
   const day = today.getDay()
   const month = today.getMonth()
   const dayNo = today.getDate()
