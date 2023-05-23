@@ -33,8 +33,10 @@ app.get('/api/:date', (req, res) => {
   } else {
     today = new Date(Number(date))
   }
+  let strDate = today.toString()
+  strDate = strDate.slice(0, strDate.indexOf('(') - 1)
   const time = today.getTime()
-  res.json({ unix: time, utc: today.toString() })
+  res.json({ unix: time, utc: strDate })
 })
 
 // your first API endpoint...
