@@ -21,8 +21,8 @@ app.get('/', function (req, res) {
 
 app.get('/api', (req, res) => {
   const today = new Date()
-  const time = today.getTime()
-  res.json({ unix: time, utc: today.toString() })
+  // const time = today.getTime()
+  res.json({ unix: today.valueOf(), utc: today.toUTCString() })
 })
 
 app.get('/api/:date_string', (req, res) => {
@@ -41,21 +41,22 @@ app.get('/api/:date_string', (req, res) => {
     }
     today = new Date(typeNum)
   }
-  let strDate = today.toString()
-  strDate = strDate.slice(0, strDate.indexOf('+'))
-  const day = today.getDay()
-  const month = today.getMonth()
-  const dayNo = today.getDate()
-  const year = today.getFullYear()
-  const hr = today.getHours()
-  const min = today.getMinutes()
-  const sec = today.getSeconds()
-  const dateFomat = `${daysArr[day]}, ${dayNo} ${monthArr[month]} ${year} ${
-    hr < 10 ? `0${hr}` : hr
-  }:${min < 10 ? `0${min}` : min}:${sec < 10 ? `0${sec}` : sec} GMT`
+  // let strDate = today.toString()
+  // strDate = strDate.slice(0, strDate.indexOf('+'))
+  // const day = today.getDay()
+  // const month = today.getMonth()
+  // const dayNo = today.getDate()
+  // const year = today.getFullYear()
+  // const hr = today.getHours()
+  // const min = today.getMinutes()
+  // const sec = today.getSeconds()
+  // const dateFomat = `${daysArr[day]}, ${dayNo} ${monthArr[month]} ${year} ${
+  //   hr < 10 ? `0${hr}` : hr
+  // }:${min < 10 ? `0${min}` : min}:${sec < 10 ? `0${sec}` : sec} GMT`
 
-  const time = today.getTime()
-  res.json({ unix: time, utc: dateFomat })
+  // const time = today.getTime()
+  res.json({ unix: today.valueOf(), utc: today.toUTCString() })
+  // res.json({ unix: time, utc: dateFomat })
 })
 
 // your first API endpoint...
