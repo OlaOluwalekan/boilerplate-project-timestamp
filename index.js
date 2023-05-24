@@ -25,8 +25,8 @@ app.get('/api', (req, res) => {
   res.json({ unix: time, utc: today.toString() })
 })
 
-app.get('/api/:date', (req, res) => {
-  const date_string = req.params.date
+app.get('/api/:date_string', (req, res) => {
+  const { date_string } = req.params
   let today
 
   if (date_string.includes('-')) {
