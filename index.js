@@ -19,13 +19,13 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/views/index.html')
 })
 
-app.get('/api', (req, res) => {
+app.get('/api/timestamp', (req, res) => {
   const today = new Date()
   const time = today.getTime()
   res.json({ unix: time, utc: today.toString() })
 })
 
-app.get('/api/:date_string', (req, res) => {
+app.get('/api/timestamp/:date_string', (req, res) => {
   const { date_string } = req.params
   let today
 
